@@ -14,7 +14,7 @@
 ##### 小程序
 
 * 前端：mpvue、vue全家桶
-* 后端：Thinkphp、MySQL、LayUI
+* 后端：ThinkPHP、MySQL、LayUI
 
 ### 获奖
 
