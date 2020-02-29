@@ -1,0 +1,21 @@
+<section class="text-section spad">
+    <div class="container">
+        <div class="section-title">
+            <h2>宣传视频</h2>
+            <p>Video</p>
+        </div>
+        <div class="row" uk-lightbox>
+            {volist name="video" id="vo" key="key"}
+            <div class="grid-item col-md-4 col-sm-6 col-xs-12">
+                <div class="work-item">
+                    <a href="{$vo.video}" data-caption="{$vo.title}" data-type="iframe">
+                        <img data-src="{$vo.image}" style="width: 450px;height: 250px;" uk-img>
+                        <div class="work-inner"></div>
+                    </a>
+                </div>
+                <h3 style="margin-top:5px;"><i class="fa fa-video-camera" style="margin-right:5px;"></i>{$vo.title}</h3>
+            </div>
+            {/volist}
+        </div>
+        <p style="font-size:12px;margin-top:5px;" class="pull-right">© 视频内容来自网络，仅供占位，如有侵权，请联系站长。</p>
+</section>

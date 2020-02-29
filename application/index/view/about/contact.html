@@ -1,0 +1,40 @@
+<section class="about-section spad">
+    <div class="container">
+        <div class="section-title">
+            <h2>联系我们</h2>
+            <p>Contact</p>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <ul class="con-info">
+                    <li>
+                        <i class="fa fa-qq"></i>
+                        <span>QQ</span>
+                        <a href="tencent://message/?Menu=yes&uin=894519210" target="_blank">894519210</a>
+                    </li>
+                    <li>
+                        <i class="fa fa-envelope-o"></i>
+                        <span>E-mail</span>
+                        <a href="mailto:izhaoo@qq.com" target="_blank">894519210@qq.com</a>
+                    </li>
+                    <li>
+                        <i class="fa fa-map-marker"></i>
+                        <span>Site</span>
+                        <a href="https://www.izhaoo.com" target="_blank">https://www.izhaoo.com</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-7 contact-left">
+                <div id="form-chack"></div>
+                <form action="{:url('/index/about/getContent')}" id="contact-form" method="POST">
+                    <input type="text" name="name" id="name" required placeholder="姓名*">
+                    <input type="email" name="email" id="email" required placeholder="邮箱*">
+                    <div class="send-btn-div">
+                        <textarea id="content" name="content" required placeholder="留言*"></textarea>
+                        <button type="submit" class="send-btn"><i class="fa fa-send"></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,89 @@
+<section class="news-list-section spad">
+    <div class="container">
+        <div class="row fix-margin" style="margin-bottom: 20px">
+            <ul class="nav nav-tabs">
+                <li role="presentation" {if $id=="all"}class="active" {/if}> 
+                    <a href="{:url('/index/strategy/list',array('id'=>'all'))}">全部</a>
+                </li>
+                {volist name="scenicMenu" id="vo"}
+                    <li role="presentation" {if $id == $vo.id}class="active"{/if}>
+                        <a href="{:url('/index/strategy/list',array('id'=>$vo['id']))}">{$vo.name}</a>
+                    </li>
+                {/volist}
+                <button class="btn btn-default pull-right" id="upload-strategy" style="padding: 6px 12px 6px 12px;">上传攻略</button>
+            </ul>
+        </div>
+        {volist name="strategy" id="vo"}
+        <div class="row uk-animation-toggle">
+            <div class="col-md-12 blog-item uk-animation-fast uk-animation-shake">
+                <a  class="col-md-3" href="{:url('/index/strategy/index',array('id'=>$vo.id))}"><img data-src="{$vo.image}" uk-img></a>
+                <div class="col-md-9 text-item">
+                    <a href="{:url('/index/strategy/index',array('id'=>$vo.id))}"><h1 class="title">{$vo.title}</h1></a>
+                    <p class="substr-4">{$vo.content | strip_tags}</p>
+                    <span><i class="fa fa-clock-o"></i>{$vo.posttime | strtotime | date="Y-m-d",###}</span>
+                    <span><i class="fa fa-user"></i>{$vo.user}</span>
+                </div>
+            </div>
+        </div>
+        {/volist}
+        <div class="row fix-margin">
+            {$strategy->render()}
+        </div>
+    </div>
+</section>
+
+<script type="text/html" id="strategytpl">
+    <form id="strategy-form" class="form-horizontal form-layer" method="POST" action="{:url('strategy/upload')}">
+        <input type="hidden" id="user_id" name="user_id" value="{$user.id}">
+        <div class="form-body">
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-3">{:__('攻略标题')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <input type="text" class="form-control" id="title" name="title" placeholder="{:__('攻略标题')}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-3">{:__('攻略内容')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <textarea type="text" class="form-control" id="content" name="content"
+                        placeholder="{:__('攻略内容')}"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-3">{:__('封面图片')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <div class="input-group">
+                        <input id="image" class="form-control" size="50" name="image" type="text"
+                            placeholder="{:__('封面图片')}">
+                        <div class="input-group-addon no-border no-padding">
+                            <button type="button" id="plupload-image" class="btn btn-danger plupload"
+                                data-input-id="image"
+                                data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp"
+                                data-multiple="false" data-preview-id="p-image"><i class="fa fa-upload"></i>
+                                {:__('上传')}</button>
+                        </div>
+                    </div>
+                    <ul class="row list-inline plupload-preview" id="p-image"></ul>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-3">{:__('景点名称')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <select class="col-xs-12 col-sm-8" name="scenic_id" id="scenic_id">
+                        {volist name="scenic" id="vo"}
+                        <option value="{$vo.id}">{$vo.name}</option>
+                        {/volist}
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-footer">
+            <div class="form-group" style="margin-bottom:0;">
+                <label class="control-label col-xs-12 col-sm-3"></label>
+                <div class="col-xs-12 col-sm-8">
+                    <button type="submit" class="btn btn-md btn-default">{:__('提交')}</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</script>

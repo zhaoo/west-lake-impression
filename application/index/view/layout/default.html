@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {include file="common/meta" /}
+    </head>
+
+    <body>
+        <div id="preloader">
+            <div class="pre-container">
+                <div class="spinner">
+                    <div class="double-bounce1"></div>
+                    <div class="double-bounce2"></div>
+                </div>
+            </div>
+        </div>
+
+        <nav>
+            <div class="row">
+                <div class="container">
+                    <div class="logo">
+                        <a href="/">
+                            <h1>{$site.name}</h1>
+                        </a>
+                    </div>
+                    <div class="mobile-bar"><span></span></div>
+                    <ul class="nav-menu">
+                        <li><a href="/">首页</a></li>
+                        <li class="dropdown">
+                            <a href="{:url('/index/intro/intro')}" class="dropdown-toggle">概述</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{:url('/index/intro/intro')}">西湖概述</a></li>
+                                <li><a href="{:url('/index/intro/history')}">历史渊源</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="{:url('/index/impression/vr')}" class="dropdown-toggle">印象</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{:url('/index/impression/vr')}">全景互动</a></li>
+                                <li><a href="{:url('/index/impression/video')}">宣传视频</a></li>
+                                <li><a href="{:url('/index/photo/index')}">浮光掠影</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="{:url('/index/scenic/list')}" class="dropdown-toggle">景区</a>
+                            <ul class="dropdown-menu">
+                                {volist name="scenicMenu" id="vo"}
+                                    <li><a href="{:url('/index/scenic/index',array('id'=>$vo['id']))}">{$vo.name}</a></li>
+                                {/volist}
+                            </ul>
+                        </li>
+                        <li><a href="{:url('/index/news/list',array('id'=>'all'))}">新闻</a></li>
+                        <li><a href="{:url('/index/culture/list')}">文化</a></li>
+                        <li><a href="{:url('/index/food/list')}">美食</a></li>
+                        <li><a href="{:url('/index/strategy/list',array('id'=>'all'))}">攻略</a></li>
+                        <li class="dropdown">
+                            <a href="{:url('/index/about/contact')}" class="dropdown-toggle">服务</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{:url('/index/service/phone')}">常用电话</a></li>
+                                <li><a href="{:url('/index/service/trafic')}">出行交通</a></li>
+                                <li><a href="{:url('/index/service/other')}">相关业务</a></li>
+                                <li><a href="{:url('/index/about/contact')}">联系我们</a></li>
+                                <li><a href="{:url('/index/about/copyright')}">版权说明</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="{if $userMenu == '登录'}{:url('/index/user/login')}{else /}{:url('/index/user/index')}{/if}">{$userMenu}</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <script>
+            var isIndex = false;
+        </script>
+
+        {__CONTENT__}
+
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="footer-nav col-md-8 col-xs-12">
+                        <div class="social">
+                            <a target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url={$site.domain}&title={$site.name}&source={$site.domain}&desc=我发现了一个很好的网站，快来看看吧。&pics={$site.domain}{$site.image[0]}&summary={$site.description}"><i class="fa fa-qq"></i></a>
+                            <a href="#qrcode" uk-toggle><i class="fa fa-wechat"></i></a>
+                            <a target="_blank" href="http://service.weibo.com/share/mobile.php?url={$site.domain}&title={$site.name}&pic={$site.domain}{$site.image[0]}"><i class="fa fa-weibo"></i></a>
+                            <a target="_blank" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url={$site.domain}&title={$site.name}&desc=我发现了一个很好的网站，快来看看吧。&summary={$site.description}&site={$site.domain}&pics={$site.domain}{$site.image[0]}"><i class="fa fa-tencent-weibo"></i></a>
+                            <a href="#qrcode" uk-toggle><i class="fa fa-qrcode"></i></a>
+                        </div>
+                        <div class="footer-info">
+                            <a href="{:url('/index/about/contact')}">联系我们</a>
+                            <span>|</span>
+                            <a href="">友情链接</a>
+                            <span>|</span>
+                            <a href="{:url('/index/about/copyright')}">版权说明</a>
+                            <span>|</span>
+                            <a href="{:url('/index/service/other')}">相关业务</a>
+                            <span>|</span>
+                            <a href="{:url('/admin')}">后台管理</a>
+                        </div>
+                        <p class="copyright">Copyright© 2019-2019 | <a href="https://www.izhaoo.com" target="_blank">zhaoo</a> .AllRightsReserved</p>
+                    </div>
+                    <div class="footer-qrcode pull-right col-md-4 col-xs-12">
+                        <div class="qrcode-item center" style="margin-right:10px;">
+                            <img data-src="{$site.gzh}" uk-img>
+                            <p>服务公众号</p>
+                        </div>
+                        <div class="qrcode-item center" style="margin-left:10px;">
+                            <img data-src="{$site.shop}" uk-img>
+                            <p>商城小程序</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <div class="back-to-top"><i class="fa fa-arrow-up"></i> <span id="scroll-percent">0%</span></div>
+        <div id="qrcode" class="uk-flex-top" uk-modal>
+            <div class="uk-modal-dialog uk-width-auto uk-margin-auto-vertical">
+                <button class="uk-modal-close-outside" type="button" uk-close></button>
+                <img class="image" style="width:200px;height:200px;" data-src="{$site.qrcode}" uk-img>
+            </div>
+        </div>
+        {include file="common/script" /}
+    </body>
+</html>

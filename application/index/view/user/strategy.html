@@ -1,0 +1,32 @@
+<style>
+    .comment-title {
+        display: inline-block;
+        margin-right: 30px;
+    }
+</style>
+
+<section class="user-section spad">
+    <div id="content-container" class="container">
+        <div class="row">
+            <div class="col-md-3">
+                {include file="common/sidenav" /}
+            </div>
+            <div class="col-md-9">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        {volist name="strategy" id="vo"}
+                            <a class="comment-title" href="{:url('/index/strategy/index',array('id'=>$vo['id']))}">
+                                <h3>{$vo.title}</h3>
+                            </a>
+                            <small class="strategy-delete pull-right" id="{$vo.id}"><i class="fa fa-trash"> 删除</i></small>
+                            <small class="pull-right" style="margin-right: 10px;">{$vo.posttime}</small>
+                            <p class="substr-3">{$vo.content | strip_tags}</p>
+                            <hr>
+                        {/volist}
+                        {$strategy->render()}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

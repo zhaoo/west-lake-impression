@@ -1,0 +1,19 @@
+<section class="scenic-section spad" id="scenic">
+    <div class="container">
+        <div class="row">
+            {volist name="scenic" id="vo"}
+            <div class="col-md-4 col-sm-6 uk-animation-toggle">
+                <a href="{:url('/index/scenic/index',array('id'=>$vo['id']))}"
+                    class="blog-item uk-animation-fast uk-animation-shake">
+                    <img data-src="{$vo.image}" style="width: 450px;height: 250px;" uk-img>
+                    <div class="blog-item-text">
+                        <h3>{$vo.name}</h3>
+                        <p class="substr-5">{$vo.intro}</p>
+                        <span><i class="fa fa-map-marker"></i> E:{$vo.lng} N:{$vo.lat}</span>
+                    </div>
+                </a>
+            </div>
+            {/volist}
+        </div>
+    </div>
+</section>

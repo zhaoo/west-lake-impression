@@ -1,0 +1,82 @@
+<section class="trafic-section spad">
+    <div class="container trafic-guid">
+        <div class="section-title">
+            <h2>交通指引</h2>
+            <p>Guid</p>
+        </div>
+        <div class="col-md-4">
+            <h3>公交车站牌</h3>
+            <p>断河头、望江门、新宫桥、胡雪岩故居、鼓楼、望江门、姚园寺巷、三昧庵巷、香榭商务大厦、香榭商务大厦(城站火车站南)、鼓楼、郭东园巷(城站火车站)、高银街东口、铁佛寺桥、梅花碑、城站火车站(金刚寺巷首末站)。</p>
+        </div>
+        <div class="col-md-4">
+            <h3>公交车路线</h3>
+            <p>1002路、116路、151路、190路、30路、92路、62路、801路、59路环线、60路环线、71路、127路、315路、334路、113路、352路、K327路、8路、195路、308路、13路、189路、198路、66路、B支3路区间、B支3路、3/K3路、K155路、115路等。</p>
+        </div>
+        <div class="col-md-4">
+            <h3>出租车</h3>
+            <p>杭州市出租车的起步价是11.0元、起步距离3.0公里、每公里2.5元、无燃油附加费，请参考。</p>
+        </div>
+    </div>
+</section>
+
+<section class="trafic-section spad">
+    <div class="container">
+        <div class="section-title">
+            <h2>全域地图</h2>
+            <p>Map</p>
+        </div>
+        <div class="grid-item">
+            <div class="work-item">
+                <img data-src="__STATIC__/trafic/map.jpg" uk-img>
+                <div class="work-inner">
+                    <a class="work-zoom" href="#map"><i class="fa fa-search"></i></a>
+                </div>
+            </div>
+            <div id="map" class="mfp-hide work-popup map">
+                <img data-src="__STATIC__/trafic/map.jpg" uk-img>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="scenic-section spad">
+    <div class="container">
+        <div class="section-title">
+            <h2>在线导航</h2>
+            <p>Navigation</p>
+        </div>
+        <div class="col-md-5">
+            <div id="baidu_map"></div>
+        </div>
+        <div class="col-md-3">
+            <ul class="nav nav-tabs traffic-type">
+                <li role="presentation" class="active" id="drive"><a href="javacript:void(0);">驾车</a></li>
+                <li role="presentation" id="bus"><a href="javacript:void(0);">公交</a></li>
+                <li role="presentation" id="walk"><a href="javacript:void(0);">步行</a></li>
+            </ul>
+            <form class="traffic-form">
+                <div class="form-group">
+                    <label>地址</label>
+                    <p>浙江省杭州市西湖区龙井路1号</p>
+                </div>
+                <div class="form-group">
+                    <label for="start">起点</label>
+                    <span class="pickup"><i class="fa fa-map-pin"></i></span>
+                    <input class="form-control" id="start_address" placeholder="请拾取起点">
+                    <input class="hidden" id="start_lng">
+                    <input class="hidden" id="start_lat">
+                </div>
+                <div class="form-group">
+                    <label for="end">终点</label>
+                    <input class="form-control" id="end_address" value="杭州西湖景区" disabled>
+                    <input class="hidden" id="end_lng" value="120.125069">
+                    <input class="hidden" id="end_lat" value="30.225363">
+                </div>
+                <input class="btn btn-default" type="button" value="规划" id="traffic-plan">
+            </form>
+        </div>
+        <div class="col-md-4">
+            <div id="traffic_result"></div>
+        </div>
+    </div>
+</section>

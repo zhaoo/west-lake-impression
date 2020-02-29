@@ -1,0 +1,36 @@
+<style>
+    .comment-title {
+        display: inline-block;
+        margin-right: 30px;
+    }
+</style>
+
+<section class="user-section spad">
+    <div id="content-container" class="container">
+        <div class="row">
+            <div class="col-md-3">
+                {include file="common/sidenav" /}
+            </div>
+            <div class="col-md-9">
+                <div class="panel panel-default ">
+                    <div class="panel-body">
+                        {volist name="message" id="vo"}
+                            {if $vo.type == "news"}
+                            <a class="comment-title" href="{:url('/index/news/index',array('id'=>$vo['urlId']))}">
+                            {else /}
+                            <a class="comment-title" href="{:url('/index/strategy/index',array('id'=>$vo['urlId']))}">
+                            {/if}
+                                <h3>{$vo.title}</h3>
+                            </a>
+                            <small class="comment-delete pull-right" id="{$vo.id}"><i class="fa fa-trash"> 删除</i></small>
+                            <small class="pull-right" style="margin-right: 10px;">{$vo.posttime}</small>
+                            <p class="substr-2">{$vo.content}</p>
+                            <hr>
+                        {/volist}
+                        {$message->render()}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

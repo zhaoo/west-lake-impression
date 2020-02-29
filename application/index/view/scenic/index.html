@@ -1,0 +1,160 @@
+<section class="scenic-section spad">
+    <div class="container">
+        <div class="section-title">
+            <h1 class="scenic-name">{$scenic.name}</h1>
+        </div>
+        <p>{$scenic.intro}</p>
+    </div>
+</section>
+
+<section class="scenic-section spad">
+    <div class="container">
+        <div class="section-title">
+            <h2>公告</h2>
+            <p>Notice</p>
+        </div>
+        <div class="col-md-4 pull-left notice">
+            {$scenic.content}
+        </div>
+        <div class="col-md-3 notice">
+            <h3>实时天气</h3>
+            <span>天气：</span><span id="weather"></span><span></span><br>
+            <span>温度：</span><span id="temperature"></span><span>°C</span><br>
+            <span>湿度：</span><span id="humidity"></span><span>%</span><br>
+            <span>风速：</span><span id="winddirection"></span><span> - </span><span id="windpower"></span>
+        </div>
+        <div class="grid-item col-md-5 pull-right">
+            <div class="work-item" uk-lightbox>
+                <a href="{$scenic.map_image}" data-caption="{$scenic.name} - 景区地图">
+                    <img data-src="{$scenic.map_image}" uk-img>
+                    <div class="work-inner"></div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="scenic-section spad">
+    <div class="container">
+        <div class="section-title">
+            <h2>新闻</h2>
+            <p>News</p>
+        </div>
+        <div class="col-md-5 pull-left js-slideshow-animation uk-slideshow"
+            uk-slideshow="autoplay: true; animation:pull;">
+            <div class="uk-position-relative uk-visible-toggle uk-light">
+                <ul class="uk-slideshow-items">
+                    {volist name="news" id="vo" key="key"}
+                    <li>
+                        <div class="uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-left">
+                            <a href="{:url('/index/news/index',array('id'=>$vo.id))}">
+                                <img data-src="{$vo.image}" uk-img="target: !.uk-slideshow-items">
+                            </a>
+                        </div>
+                        <div class="uk-position-center uk-position-small uk-text-center uk-light">
+                            <h1>{$vo.title}</h1>
+                        </div>
+                    </li>
+                    {/volist}
+                </ul>
+                <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous
+                    uk-slideshow-item="previous"></a>
+                <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next
+                    uk-slideshow-item="next"></a>
+                <div class="uk-position-bottom-center uk-position-medium">
+                    <ul class="uk-dotnav">
+                        {volist name="news" id="vo" key="key"}
+                            <li uk-slideshow-item="{$key - 1}"><a href="#"></a></li>
+                        {/volist}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 pull-right news">
+            {volist name="news" id="vo"}
+                <div class="row news-list uk-animation-toggle">
+                    <a href="{:url('/index/news/index',array('id'=>$vo.id))}"
+                        class="uk-animation-fast uk-animation-shake">
+                        <h3>{$vo.title | mb_substr=0,20}</h3>
+                    </a>
+                    <span class="pull-right">{$vo.posttime | strtotime | date="Y-m-d",###}</span>
+                </div>
+            {/volist}
+        </div>
+    </div>
+</section>
+
+<section class="portfolios-section spad">
+    <div class="container">
+        <div class="section-title">
+            <h2>相册</h2>
+            <p>Album</p>
+        </div>
+        <div class="row portfolio_container" uk-lightbox>
+            {volist name="album" id="vo" key="key"}
+            <div class="grid-item col-md-4 col-sm-4 col-xs-12">
+                <div class="work-item">
+                    <a href="{$vo.image}" data-caption="{$vo.intro}">
+                        <img data-src="{$vo.image}" style="width: 450px;height: 250px;" uk-img>
+                        <div class="work-inner"></div>
+                    </a>
+                </div>
+            </div>
+            {/volist}
+        </div>
+    </div>
+</section>
+
+<section class="scenic-section spad">
+    <div class="container">
+        <div class="section-title">
+            <h2>街景</h2>
+            <p>Streetscape</p>
+        </div>
+        <div class="col-md-10 col-md-offset-1">
+            <div id="panorama"></div>
+        </div>
+    </div>
+</section>
+
+<section class="scenic-section spad">
+    <div class="container">
+        <div class="section-title">
+            <h2>导航</h2>
+            <p>Navigation</p>
+        </div>
+        <div class="col-md-5">
+            <div id="baidu_map"></div>
+        </div>
+        <div class="col-md-3">
+            <ul class="nav nav-tabs traffic-type">
+                <li role="presentation" class="active" id="drive"><a href="javacript:void(0);">驾车</a></li>
+                <li role="presentation" id="bus"><a href="javacript:void(0);">公交</a></li>
+                <li role="presentation" id="walk"><a href="javacript:void(0);">步行</a></li>
+            </ul>
+            <form class="traffic-form">
+                <div class="form-group">
+                    <label>地址</label>
+                    <p>{$scenic.address}</p>
+                </div>
+                <div class="form-group">
+                    <label for="start">起点</label>
+                    <span class="pickup"><i class="fa fa-map-pin"></i></span>
+                    <input class="form-control" id="start_address" placeholder="请拾取起点">
+                    <input class="hidden" id="start_lng">
+                    <input class="hidden" id="start_lat">
+                </div>
+                <div class="form-group">
+                    <label for="end">终点</label>
+                    <input class="form-control" id="end_address" value="{$scenic.address}" disabled>
+                    <input class="hidden" id="end_lng" value="{$scenic.lng}">
+                    <input class="hidden" id="end_lat" value="{$scenic.lat}">
+                </div>
+                <input class="btn btn-default" type="button" value="规划" id="traffic-plan">
+            </form>
+        </div>
+        <div class="col-md-4">
+            <div id="traffic_result"></div>
+        </div>
+    </div>
+</section>

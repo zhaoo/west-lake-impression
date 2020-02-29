@@ -1,0 +1,167 @@
+<section class="food-section spad">
+    <div class="container">
+        <div class="section-title">
+            <h1 class="food-name">{$food.name}</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="col-md-5 pull-left uk-slideshow"
+                    uk-slideshow="autoplay: true; animation:pull;">
+                    <div class="uk-position-relative uk-visible-toggle uk-light">
+                        <ul class="uk-slideshow-items" uk-lightbox>
+                            {volist name="image" id="vo" key="key"}
+                            <li>
+                                <a href="{$vo}">
+                                    <div class="uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-left">
+                                        <img data-src="{$vo}" uk-img="target: !.uk-slideshow-items">
+                                    </div>
+                                </a>
+                            </li>
+                            {/volist}
+                        </ul>
+                        <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#"
+                            uk-slidenav-previous uk-slideshow-item="previous"></a>
+                        <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next
+                            uk-slideshow-item="next"></a>
+                        <div class="uk-position-bottom-center uk-position-medium">
+                            <ul class="uk-dotnav">
+                                {volist name="image" id="vo" key="key"}
+                                <li uk-slideshow-item="{$key - 1}"><a href="#"></a></li>
+                                {/volist}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-7 pull-right">
+                    <p>{$food.intro}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="comment-section spad">
+    <div class="container">
+        <div class="section-title">
+            <h2>用户点评</h2>
+            <p>Comments</p>
+        </div>
+        <div class="comments">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <h3>{$food.message_count} 评论</h3>
+                    {volist name="message" id="vo"}
+                    {if $user.id == $vo.user_id}
+                    <div class="cmnt-clipboard"><span class="btn-clipboard comment-delete" id="{$vo.id}">删除</span></div>
+                    {/if}
+                    <div class="well">
+                        <div class="row">
+                            <div class="col-md-1">
+                                <img data-src="{$vo.avatar}" class="comment-avatar" uk-img>
+                            </div>
+                            <div class="col-md-11">
+                                <div class="comment-info">
+                                    <strong>{$vo.name}</strong> <span>{$vo.posttime}</span>
+                                    <p>{$vo.content}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {/volist}
+                </div>
+            </div>
+        </div>
+        <div class="comment-post">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <h3>发表评论</h3>
+                    <div id="form-chack"></div>
+                    <form method="post" action="{:url('/index/message/getMessage')}" id="message-form">
+                        <div class="row">
+                            <input type="hidden" name="type" id="type" value="food">
+                            <input type="hidden" name="food_id" id="food_id" value="{$foodId}">
+                            {if $user.id}
+                            <div class="col-md-12">
+                                <h6 class="comment-login">{$user.username} <a href="{:url('user/logout')}">[注销]</a></h6>
+                            </div>
+                            <input type="hidden" name="user_id" id="user_id" value="{$user.id}">
+                            {else /}
+                            <div class="col-md-12">
+                                <h6 class="comment-login"><a href="{:url('user/login')}">[登录]</a></h6>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <input name="name" type="text" class="form-control" id="name" required
+                                        placeholder="姓名">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <input name="email" type="email" class="form-control" id="email" required
+                                        placeholder="邮箱">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <input name="phone" type="text" class="form-control" id="phone" placeholder="电话">
+                                </div>
+                            </div>
+                            {/if}
+                            <div class="col-md-12">
+                                <textarea name="content" type="text" class="form-control" id="content" rows="8" required
+                                    placeholder="雁过留痕，留下您的评论吧~"></textarea>
+                            </div>
+                        </div>
+                        <button type="submit" id="submit" name="submit" class="btn btn-default">提交</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="scenic-section spad">
+    <div class="container">
+        <div class="section-title">
+            <h2>门店导航</h2>
+            <p>Navigation</p>
+        </div>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="col-md-6">
+                    <div id="baidu_map"></div>
+                </div>
+                <div class="col-md-3">
+                    <ul class="nav nav-tabs traffic-type">
+                        <li role="presentation" class="active" id="drive"><a href="javacript:void(0);">驾车</a></li>
+                        <li role="presentation" id="bus"><a href="javacript:void(0);">公交</a></li>
+                        <li role="presentation" id="walk"><a href="javacript:void(0);">步行</a></li>
+                    </ul>
+                    <form class="traffic-form">
+                        <div class="form-group">
+                            <label>地址</label>
+                            <p>{$food.address}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="start">起点</label>
+                            <span class="pickup"><i class="fa fa-map-pin"></i></span>
+                            <input class="form-control" id="start_address" placeholder="请拾取起点">
+                            <input class="hidden" id="start_lng">
+                            <input class="hidden" id="start_lat">
+                        </div>
+                        <div class="form-group">
+                            <label for="end">终点</label>
+                            <input class="form-control" id="end_address" value="{$food.address}" disabled>
+                            <input class="hidden" id="end_lng" value="{$food.lng}">
+                            <input class="hidden" id="end_lat" value="{$food.lat}">
+                        </div>
+                        <input class="btn btn-default" type="button" value="规划" id="traffic-plan">
+                    </form>
+                </div>
+                <div class="col-md-3">
+                    <div id="traffic_result"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

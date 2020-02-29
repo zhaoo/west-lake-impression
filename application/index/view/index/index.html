@@ -1,0 +1,188 @@
+<section class="uk-slideshow" uk-slideshow="autoplay:true;animation:pull;">
+    <div class="uk-position-relative uk-visible-toggle uk-light">
+        <ul class="uk-slideshow-items" uk-height-viewport="offset-top:true;">
+            {volist name="site.image" id="vo" key="key"}
+            <li>
+                <div class="uk-position-cover uk-animation-kenburns">
+                    <img data-src="{$vo}" width="1920" height="1280" class="uk-cover"
+                        uk-img="target: !.uk-slideshow-items">
+                </div>
+                <div class="uk-position-center uk-position-small uk-text-center uk-light">
+                    <div class="intro-content">
+                        <h1 class="normal" uk-slideshow-parallax="{if $key%2==0}x{else/}y{/if}: -50,0,0; opacity: 1,1,0">{$site.name}</h1>
+                        <div class="social" uk-slideshow-parallax="{if $key%2==0}x{else/}y{/if}: 50,0,0; opacity: 1,1,0">
+                            <a target="_blank"
+                                href="http://connect.qq.com/widget/shareqq/index.html?url={$site.domain}&title={$site.name}&source={$site.domain}&desc=我发现了一个很好的网站，快来看看吧。&pics={$site.domain}{$vo}&summary={$site.description}"><i
+                                    class="fa fa-qq"></i></a>
+                            <a href="#qrcode" uk-toggle><i class="fa fa-wechat"></i></a>
+                            <a target="_blank"
+                                href="http://service.weibo.com/share/mobile.php?url={$site.domain}&title={$site.name}&pic={$site.domain}{$vo}"><i
+                                    class="fa fa-weibo"></i></a>
+                            <a target="_blank"
+                                href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url={$site.domain}&title={$site.name}&desc=我发现了一个很好的网站，快来看看吧。&summary={$site.description}&site={$site.domain}&pics={$site.domain}{$vo}"><i
+                                    class="fa fa-tencent-weibo"></i></a>
+                            <a href="#qrcode" uk-toggle><i class="fa fa-qrcode"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            {/volist}
+        </ul>
+        <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous
+            uk-slideshow-item="previous"></a>
+        <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next
+            uk-slideshow-item="next"></a>
+        <div class="uk-position-bottom-center uk-position-medium">
+            <ul class="uk-dotnav">
+                {volist name="site.image" id="vo" key="key"}
+                    <li uk-slideshow-item="{$key - 1}"><a href="#"></a></li>
+                {/volist}
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="charm-section spad" id="scenic">
+    <div class="container">
+        <div class="section-title">
+            <h2>魅力西湖</h2>
+            <p>Charm</p>
+        </div>
+        <div class="row">
+            <div class="grid-item col-md-4 charm">
+                <div class="work-item">
+                    <img data-src="__STATIC__/index/1.jpg" uk-img>
+                    <div class="uk-overlay uk-light uk-position-center">
+                        <h3>概述</h3>
+                    </div>
+                    <div class="work-inner">
+                        <ul>
+                            <li><a href="{:url('/index/intro/intro')}">西湖概述</a></li>
+                            <li><a href="{:url('/index/intro/history')}">历史渊源</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="grid-item col-md-4 charm">
+                <div class="work-item">
+                    <img data-src="__STATIC__/index/2.jpg" uk-img>
+                    <div class="uk-overlay uk-light uk-position-center">
+                        <h3>印象</h3>
+                    </div>
+                    <div class="work-inner">
+                        <ul>
+                            <li><a href="{:url('/index/impression/vr')}">全景互动</a></li>
+                            <li><a href="{:url('/index/impression/video')}">宣传视频</a></li>
+                            <li><a href="{:url('/index/photo/index')}">浮光掠影</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="grid-item col-md-4 charm">
+                <div class="work-item">
+                    <img data-src="__STATIC__/index/3.jpg" uk-img>
+                    <div class="uk-overlay uk-light uk-position-center">
+                        <h3>相关</h3>
+                    </div>
+                    <div class="work-inner">
+                        <ul>
+                            <li><a href="{:url('/index/news/list',array('id'=>'all'))}">新闻</a></li>
+                            <li><a href="{:url('/index/culture/list')}">文化</a></li>
+                            <li><a href="{:url('/index/food/list')}">美食</a></li>
+                            <li><a href="{:url('/index/strategy/list',array('id'=>'all'))}">攻略</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="scenic-section spad" id="scenic">
+    <div class="container">
+        <div class="section-title">
+            <h2>西湖景区</h2>
+            <p>Scenic</p>
+        </div>
+        <div class="row">
+            {volist name="scenic" id="vo"}
+                <div class="col-md-4 col-sm-6 uk-animation-toggle">
+                    <a href="{:url('/index/scenic/index',array('id'=>$vo['id']))}"
+                        class="blog-item uk-animation-fast uk-animation-shake">
+                        <img data-src="{$vo.image}" style="width: 450px;height: 250px;" uk-img>
+                        <div class="blog-item-text">
+                            <h3>{$vo.name}</h3>
+                            <p class="substr-5">{$vo.intro}</p>
+                            <span><i class="fa fa-map-marker"></i> E:{$vo.lng} N:{$vo.lat}</span>
+                        </div>
+                    </a>
+                </div>
+            {/volist}
+        </div>
+    </div>
+</section>
+
+<section class="services-section spad">
+    <div class="container">
+        <div class="section-title">
+            <h2>出行锦囊</h2>
+            <p>Service</p>
+        </div>
+        <div class="row">
+            <div class="col-md-2 col-sm-4 col-xs-6 service-item">
+                <a href="{:url('/index/impression/vr')}">
+                    <div class="icon">
+                        <i class="fa fa-ravelry"></i>
+                        <span></span>
+                    </div>
+                </a>
+                <h4>全景互动</h4>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 service-item">
+                <a href="{:url('/index/culture/list')}">
+                    <div class="icon">
+                        <i class="fa fa-leaf"></i>
+                        <span></span>
+                    </div>
+                </a>
+                <h4>文化探寻</h4>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 service-item">
+                <a href="{:url('/index/food/list')}">
+                    <div class="icon">
+                        <i class="fa fa-cutlery"></i>
+                        <span></span>
+                    </div>
+                </a>
+                <h4>美食天下</h4>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 service-item">
+                <a href="{:url('/index/strategy/list',array('id'=>'all'))}">
+                    <div class="icon">
+                        <i class="fa fa-bookmark"></i>
+                        <span></span>
+                    </div>
+                </a>
+                <h4>游记攻略</h4>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 service-item">
+                <a href="{:url('/index/service/phone')}">
+                    <div class="icon">
+                        <i class="fa fa-phone"></i>
+                        <span></span>
+                    </div>
+                </a>
+                <h4>常用电话</h4>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 service-item">
+                <a href="{:url('/index/service/trafic')}">
+                    <div class="icon">
+                        <i class="fa fa-map"></i>
+                        <span></span>
+                    </div>
+                </a>
+                <h4>出行交通</h4>
+            </div>
+        </div>
+    </div>
+</section>

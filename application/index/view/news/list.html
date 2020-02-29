@@ -1,0 +1,32 @@
+<section class="news-list-section spad">
+    <div class="container">
+        <div class="row fix-margin" style="margin-bottom: 20px">
+            <ul class="nav nav-tabs">
+                <li role="presentation" {if $id=="all"}class="active" {/if}> 
+                    <a href="{:url('/index/news/list',array('id'=>'all'))}">全部</a>
+                </li>
+                {volist name="scenicMenu" id="vo"}
+                    <li role="presentation" {if $id == $vo.id}class="active"{/if}>
+                        <a href="{:url('/index/news/list',array('id'=>$vo['id']))}">{$vo.name}</a>
+                    </li>
+                {/volist}
+            </ul>
+        </div>
+        {volist name="news" id="vo"}
+        <div class="row uk-animation-toggle">
+            <div class="col-md-12 blog-item uk-animation-fast uk-animation-shake">
+                <a  class="col-md-3" href="{:url('/index/news/index',array('id'=>$vo.id))}"><img data-src="{$vo.image}" uk-img></a>
+                <div class="col-md-9 text-item">
+                    <a href="{:url('/index/news/index',array('id'=>$vo.id))}"><h1 class="title">{$vo.title}</h1></a>
+                    <p class="substr-4">{$vo.content | strip_tags}</p>
+                    <span><i class="fa fa-clock-o"></i>{$vo.posttime | strtotime | date="Y-m-d",###}</span>
+                    <span><i class="fa fa-user"></i>{$vo.admin}</span>
+                </div>
+            </div>
+        </div>
+        {/volist}
+        <div class="row fix-margin">
+            {$news->render()}
+        </div>
+    </div>
+</section>

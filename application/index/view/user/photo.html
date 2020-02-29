@@ -1,0 +1,35 @@
+<section class="user-section spad">
+    <div id="content-container" class="container">
+        <div class="row">
+            <div class="col-md-3">
+                {include file="common/sidenav" /}
+            </div>
+            <div class="col-md-9">
+                <div class="panel panel-default ">
+                    <div class="panel-body">
+                        {volist name="photo" id="vo" key="key"}
+                        <div class="grid-item col-md-4 col-sm-4 col-xs-12 album-{$vo.scenic_id}">
+                            <div class="work-item">
+                                <img src="{$vo.image}" style="width: 300px;height: 160px;">
+                                <div class="work-inner">
+                                    <a class="work-zoom" href="#album-{$key}"><i class="fa fa-search"></i></a>
+                                </div>
+                            </div>
+                            <div id="album-{$key}" class="mfp-hide work-popup">
+                                <img src="{$vo.image}">
+                                <div class="work-popup-content">
+                                    <h3 class="photo-title">{$vo.title}</h3>
+                                    <span class="photo-info"><i class="fa fa-clock-o"></i>上传日期：{$vo.uploadtime}</span>
+                                    <span class="photo-delete" id="{$vo.id}"><i class="fa fa-trash"> 删除</i></span>
+                                    <p class="substr-5 photo-intro">{$vo.intro}</p>
+                                </div>
+                            </div>
+                        </div>
+                        {/volist}
+                        {$photo->render()}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

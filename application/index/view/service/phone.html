@@ -1,0 +1,18 @@
+<section class="scenic-section spad">
+    <div class="container">
+        <div class="section-title">
+            <h2>常用电话</h2>
+            <p>Phone</p>
+        </div>
+        <div class="row">
+            {volist name="phone" id="vo"}
+                <div class="col-md-4 col-sm-6 uk-animation-toggle">
+                    <div class="blog-item phone-wrap uk-animation-fast uk-animation-shake">
+                        <h3>{$vo.name}</h3>
+                        <h3 class="phone">{$vo.phone}</h3>
+                    </div>
+                </div>
+            {/volist}
+        </div>
+    </div>
+</section>

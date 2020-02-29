@@ -1,0 +1,80 @@
+<section class="photo-section spad">
+    <div class="container">
+        <div class="section-title">
+            <h2>影集</h2>
+            <p>Photograph</p>
+        </div>
+        <ul class="portfolio-filter photo-filter">
+            <li class="filter" data-filter="*">全部</li>
+            {volist name="scenic" id="vo"}
+            <li class="filter" data-filter=".album-{$vo.id}">{$vo.name}</li>
+            {/volist}
+        </ul>
+        <button class="btn btn-default pull-right" id="upload-photo">上传照片</button>
+        <div class="row portfolio_container" uk-lightbox>
+            {volist name="photo" id="vo" key="key"}
+             <div class="grid-item col-md-4 col-sm-4 col-xs-12 album-{$vo.scenic_id}">
+                 <div class="work-item">
+                     <a href="{$vo.image}" data-caption="{$vo.intro}">
+                         <img data-src="{$vo.image}" style="width: 450px;height: 250px;" uk-img>
+                         <div class="work-inner"></div>
+                     </a>
+                 </div>
+             </div>
+            {/volist}
+        </div>
+        {$photo->render()}
+    </div>
+</section>
+
+<script type="text/html" id="phototpl">
+    <form id="photo-form" class="form-horizontal form-layer" method="POST" action="{:url('photo/upload')}">
+        <div class="form-body">
+            <input type="hidden" id="user_id" name="user_id" value="{$user.id}">
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-3">{:__('图片地址')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <div class="input-group">
+                        <input id="image" class="form-control" size="50" name="image" type="text" placeholder="{:__('照片地址')}">
+                        <div class="input-group-addon no-border no-padding">
+                            <button type="button" id="plupload-image" class="btn btn-danger plupload" data-input-id="image"
+                                    data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="false"
+                                    data-preview-id="p-image"><i class="fa fa-upload"></i> {:__('上传')}</button>
+                        </div>
+                    </div>
+                    <ul class="row list-inline plupload-preview" id="p-image"></ul>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-3">{:__('照片标题')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <input type="text" class="form-control" id="title" name="title" placeholder="{:__('照片标题')}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-3">{:__('照片介绍')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <textarea type="text" class="form-control" id="intro" name="intro" placeholder="{:__('照片介绍')}"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-3">{:__('景点名称')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <select class="col-xs-12 col-sm-8" name="scenic_id" id="scenic_id">
+                        {volist name="scenic" id="vo"}
+                            <option value="{$vo.id}">{$vo.name}</option>
+                        {/volist}
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-footer">
+            <div class="form-group" style="margin-bottom:0;">
+                <label class="control-label col-xs-12 col-sm-3"></label>
+                <div class="col-xs-12 col-sm-8">
+                    <button type="submit" class="btn btn-md btn-default">{:__('提交')}</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</script>

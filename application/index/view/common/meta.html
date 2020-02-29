@@ -1,0 +1,29 @@
+<meta charset="utf-8">
+<title>{$title|default=''} - {$site.name}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{if isset($keywords)}
+<meta name="keywords" content="{$keywords}">
+{/if}
+{if isset($description)}
+<meta name="description" content="{$description}">
+{/if}
+<meta name="author" content="zhaoo">
+<link rel="shortcut icon" href="__CDN__/assets/img/favicon.ico" />
+<link rel="stylesheet" href="__INDEX__/css/bootstrap.min.css">
+<link rel="stylesheet" href="__INDEX__/css/uikit.min.css">
+<link rel="stylesheet" href="__INDEX__/css/font-awesome.min.css">
+<link rel="stylesheet" href="__INDEX__/css/magnific-popup.css">
+<link rel="stylesheet" href="__INDEX__/css/reset.css">
+<link rel="stylesheet" href="__INDEX__/css/style.css">
+<link rel="stylesheet" href="__CDN__/assets/css/frontend.css">
+<link rel="stylesheet" href="__INDEX__/css/zhaoo.css">
+<!--[if lt IE 9]>
+	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+<script src="__INDEX__/js/modernizr.js"></script>
+<script>
+var require = {
+	config: {$config|json_encode}
+};
+</script>
