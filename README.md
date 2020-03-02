@@ -16,10 +16,6 @@
 * 前端：mpvue、vue全家桶
 * 后端：ThinkPHP、MySQL、LayUI
 
-### 获奖
-
-![计算机设计大赛](http://qiniu.izhaoo.com/jsjsj.jpg)
-
 ### 截图
 
 ![小程序](http://qiniu.izhaoo.com/shop.jpg)
